@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform,
+import {
+  View, Text, StyleSheet, Platform,
   TextInput, KeyboardAvoidingView,
   TouchableOpacity
 } from 'react-native'
@@ -15,12 +16,21 @@ function SubmitButton({ onPress }) {
   )
 }
 
-submit = () => {
-
-}
-
 class CreateDeck extends Component {
+  state = {
+    text: ''
+  }
+
+  handleChange = (text) => {
+    this.setState(() => ({ text }))
+  }
+
+  submit = () => {
+    // Handle submit
+  }
+
   render() {
+    console.log(this.state.text)
     return(
       <View style={ styles.container }>
         <Text style={ styles.header }>
@@ -30,8 +40,9 @@ class CreateDeck extends Component {
           <TextInput
             style={ styles.input }
             placeholder={ 'Deck Title' }
+            onChangeText={ this.handleChange }
           />
-          <SubmitButton onPress={ this.submit }/>
+        <SubmitButton onPress={ this.submit } />
         </KeyboardAvoidingView>
       </View>
     )
