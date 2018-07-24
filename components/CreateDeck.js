@@ -4,6 +4,8 @@ import {
   TextInput, KeyboardAvoidingView,
   TouchableOpacity
 } from 'react-native'
+import { connect } from 'react-redux'
+import { addDeck } from '../actions'
 import { lightBlue } from '../utils/colors'
 
 function SubmitButton({ onPress }) {
@@ -18,15 +20,25 @@ function SubmitButton({ onPress }) {
 
 class CreateDeck extends Component {
   state = {
-    text: ''
+    title: ''
   }
 
-  handleChange = (text) => {
-    this.setState(() => ({ text }))
+  handleChange = (title) => {
+    this.setState(() => ({ title }))
   }
 
   submit = () => {
-    // Handle submit
+    const { dispatch } = this.props
+    const { title } = this.state
+    const key = this.state.title
+    const entry = {
+      title,
+      questions: []
+    }
+
+    dispatch(addDeck({
+      [key]: entry
+    }))
   }
 
   render() {
@@ -103,4 +115,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default CreateDeck
+function mapStateToProps(decks) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(CreateDeck)

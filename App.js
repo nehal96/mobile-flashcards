@@ -24,7 +24,7 @@ class App extends Component {
       <Provider store={ createStore(reducer) }>
         <View style={styles.container}>
           <FlashcardsStatusBar backgroundColor={ white } />
-          <DeckList />
+          <CreateDeck />
         </View>
       </Provider>
     );
