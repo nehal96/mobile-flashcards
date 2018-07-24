@@ -34,7 +34,7 @@ class DeckList extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -47,7 +47,7 @@ const styles = {
     marginLeft: 20,
     marginRight: 20
   }
-}
+})
 
 function mapStateToProps(decks) {
   return {

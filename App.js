@@ -7,9 +7,9 @@ import { createBottomTabNavigator } from 'react-navigation'
 import { Feather, Entypo } from '@expo/vector-icons'
 import CreateDeck from './components/CreateDeck'
 import DeckList from './components/DeckList'
-import DeckCard from './components/DeckCard'
+import DeckView from './components/DeckView'
 import reducer from './reducers'
-import { white, lightGrey } from './utils/colors'
+import { white, lightGrey, grey, blue } from './utils/colors'
 
 
 function FlashcardsStatusBar({ backgroundColor, ...props }) {
@@ -25,14 +25,14 @@ const Tabs = createBottomTabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Home',
-      tabBarIcon: <Feather name='home' size={ 30 } />
+      tabBarIcon: ({ tintColor }) => <Feather name='home' size={ 30 } color={ tintColor } />
     }
   },
   CreateDeck: {
     screen: CreateDeck,
     navigationOptions: {
       tabBarLabel: 'Create Deck',
-      tabBarIcon: <Entypo name='add-to-list' size={ 30 } />
+      tabBarIcon: ({ tintColor }) => <Entypo name='add-to-list' size={ 30 } color={ tintColor } />
     }
   }
 }, {
@@ -40,6 +40,8 @@ const Tabs = createBottomTabNavigator({
     header: null
   },
   tabBarOptions: {
+    inactiveTintColor: grey,
+    activeTintColor: blue,
     style: {
       height: 50,
       paddingTop: 6,
@@ -56,7 +58,7 @@ class App extends Component {
       <Provider store={ createStore(reducer) }>
         <View style={styles.container}>
           <FlashcardsStatusBar backgroundColor={ white } />
-          <Tabs />
+          <DeckView />
         </View>
       </Provider>
     );

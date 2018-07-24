@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
-import { gray, pastelYellow } from '../utils/colors'
+import { grey, pastelYellow } from '../utils/colors'
 
 class DeckCard extends Component {
   render() {
@@ -20,7 +20,7 @@ class DeckCard extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   card: {
     backgroundColor: pastelYellow,
     borderRadius: Platform.OS === 'ios' ? 16 : 2,
@@ -46,11 +46,11 @@ const styles = {
   },
   cardSubHeader: {
     fontSize: 20,
-    color: gray,
+    color: grey,
     marginBottom: 10,
     textAlign: 'center'
   }
-}
+})
 
 function mapStateToProps(decks, { title, numCards }) {
   return {
