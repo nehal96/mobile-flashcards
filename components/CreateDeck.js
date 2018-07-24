@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { addDeck } from '../actions'
-import { lightBlue } from '../utils/colors'
+import { lightBlue, white, lightGrey } from '../utils/colors'
 
 function SubmitButton({ onPress }) {
   return (
@@ -81,9 +81,10 @@ class CreateDeck extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Platform.OS === 'ios' ? white : lightGrey,
     justifyContent: 'space-between',
-    marginLeft: 20,
-    marginRight: 20
+    paddingLeft: 20,
+    paddingRight: 20
   },
   header: {
     fontFamily: Platform.OS === 'ios' ? 'Avenir Next' : 'sans-serif',

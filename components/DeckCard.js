@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform } from 'react-native'
+import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { grey, pastelYellow } from '../utils/colors'
 
 class DeckCard extends Component {
+  handleRoute = (title) => {
+    console.log(title)
+  }
+
   render() {
-    const { title, numCards } = this.props
+    const { title, numCards, onPress } = this.props
 
     return (
       <View style={ styles.card }>
-        <Text style={ styles.cardHeader }>
-          { title }
-        </Text>
-        <Text style={ styles.cardSubHeader }>
-          { numCards } cards
-        </Text>
+        <TouchableOpacity onPress={ onPress }>
+          <Text style={ styles.cardHeader }>
+            { title }
+          </Text>
+          <Text style={ styles.cardSubHeader }>
+            { numCards } cards
+          </Text>
+        </TouchableOpacity>
       </View>
     )
   }

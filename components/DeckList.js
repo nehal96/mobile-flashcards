@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Platform, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
+import { white, lightGrey } from '../utils/colors'
 import DeckCard from './DeckCard'
 
 class DeckList extends Component {
@@ -12,6 +13,12 @@ class DeckList extends Component {
     // Add dummy data to store
     getDecks()
       .then((decks) => dispatch(receiveDecks(decks)))
+  }
+
+  toDeck = (title) => {
+    const { navigate } = this.props.navigation
+
+    navigate('DeckView')
   }
 
   render() {
@@ -26,6 +33,7 @@ class DeckList extends Component {
               key={ deckName }
               title={ decks[deckName].title }
               numCards={ decks[deckName].questions.length }
+              onPress={ this.toDeck }
             />
           ))}
         </ScrollView>
@@ -37,6 +45,7 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Platform.OS === 'ios' ? white : lightGrey
   },
   header: {
     fontFamily: Platform.OS === 'ios' ? 'Avenir Next' : 'sans-serif',
