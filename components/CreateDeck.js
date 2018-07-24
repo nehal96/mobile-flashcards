@@ -5,6 +5,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { addDeck } from '../actions'
 import { lightBlue } from '../utils/colors'
 
@@ -45,9 +46,19 @@ class CreateDeck extends Component {
     this.setState(() => ({
       title: ''
     }))
+
+    this.toHome()
+  }
+
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationActions.navigate({
+      routeName: 'Home'
+    }))
   }
 
   render() {
+    const value = this.state.title
+
     return(
       <View style={ styles.container }>
         <Text style={ styles.header }>
@@ -57,6 +68,7 @@ class CreateDeck extends Component {
           <TextInput
             style={ styles.input }
             placeholder={ 'Deck Title' }
+            value={ value }
             onChangeText={ this.handleChange }
           />
         <SubmitButton onPress={ this.submit } />
