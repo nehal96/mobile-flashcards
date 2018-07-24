@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform } from 'react-native'
+import { View, Text, StyleSheet, Platform, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
@@ -19,14 +19,16 @@ class DeckList extends Component {
 
     return (
       <View style={ styles.container }>
-        <Text style={ styles.header }>Decks</Text>
-        { Object.keys(decks).map((deckName) => (
-          <DeckCard
-            key={ deckName }
-            title={ decks[deckName].title }
-            numCards={ decks[deckName].questions.length }
-          />
-        ))}
+        <ScrollView>
+          <Text style={ styles.header }>Decks</Text>
+          { Object.keys(decks).map((deckName) => (
+            <DeckCard
+              key={ deckName }
+              title={ decks[deckName].title }
+              numCards={ decks[deckName].questions.length }
+            />
+          ))}
+        </ScrollView>
       </View>
     )
   }
@@ -35,16 +37,15 @@ class DeckList extends Component {
 const styles = {
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    marginLeft: 20,
-    marginRight: 20
   },
   header: {
     fontFamily: Platform.OS === 'ios' ? 'Avenir Next' : 'sans-serif',
     fontSize: 36,
     fontWeight: '700',
     marginTop: 20,
-    marginBottom: 15
+    marginBottom: 15,
+    marginLeft: 20,
+    marginRight: 20
   }
 }
 

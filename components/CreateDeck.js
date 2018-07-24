@@ -82,13 +82,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    padding: 20
+    marginLeft: 20,
+    marginRight: 20
   },
   header: {
     fontFamily: Platform.OS === 'ios' ? 'Avenir Next' : 'sans-serif',
     fontSize: 36,
     fontWeight: '700',
-    marginTop: 15,
+    marginTop: 20,
     marginBottom: 15
   },
   inputContainer: {

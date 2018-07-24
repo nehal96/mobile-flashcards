@@ -41,15 +41,11 @@ const Tabs = createBottomTabNavigator({
   },
   tabBarOptions: {
     style: {
-      height: 56,
+      height: 50,
+      paddingTop: 6,
       backgroundColor: white,
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowRadius: 6,
-      shadowOpacity: 1
+      borderWidth: 1,
+      borderColor: lightGrey
     }
   }
 })
