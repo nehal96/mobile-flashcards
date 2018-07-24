@@ -5,13 +5,15 @@ import { gray, pastelYellow } from '../utils/colors'
 
 class DeckCard extends Component {
   render() {
+    const { title, numCards } = this.props
+
     return (
       <View style={ styles.card }>
         <Text style={ styles.cardHeader }>
-          Deck Title
+          { title }
         </Text>
         <Text style={ styles.cardSubHeader }>
-          10 cards
+          { numCards } cards
         </Text>
       </View>
     )
@@ -23,9 +25,7 @@ const styles = {
     backgroundColor: pastelYellow,
     borderRadius: Platform.OS === 'ios' ? 16 : 2,
     padding: 20,
-    marginLeft: 15,
-    marginRight: 15,
-    marginTop: 17,
+    marginTop: 20,
     justifyContent: 'center',
     shadowRadius: 8,
     shadowOpacity: 0.7,
@@ -49,4 +49,11 @@ const styles = {
   }
 }
 
-export default DeckCard
+function mapStateToProps(decks, { title, numCards }) {
+  return {
+    title,
+    numCards
+  }
+}
+
+export default connect(mapStateToProps)(DeckCard)

@@ -30,7 +30,6 @@ class CreateDeck extends Component {
   }
 
   render() {
-    console.log(this.state.text)
     return(
       <View style={ styles.container }>
         <Text style={ styles.header }>
