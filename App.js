@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { Constants } from 'expo'
 import CreateDeck from './components/CreateDeck'
 import DeckList from './components/DeckList'
+import DeckCard from './components/DeckCard'
 import reducer from './reducers'
+import { white, lightGrey } from './utils/colors'
 
 
 function FlashcardsStatusBar({ backgroundColor, ...props }) {
@@ -22,7 +24,7 @@ class App extends Component {
       <Provider store={ createStore(reducer) }>
         <View style={styles.container}>
           <FlashcardsStatusBar backgroundColor={ 'white' } />
-          <DeckList />
+          <DeckCard />
         </View>
       </Provider>
     );
@@ -32,7 +34,7 @@ class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Platform.OS === 'ios' ? white : lightGrey,
   },
 });
 

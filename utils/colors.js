@@ -1,1 +1,5 @@
 export const lightBlue = '#93deff'
+export const white = '#fff'
+export const lightGrey = '#eee'
+export const gray = '#757575'
+export const pastelYellow = '#fdec96'
