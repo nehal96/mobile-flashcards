@@ -36,8 +36,14 @@ class CreateDeck extends Component {
       questions: []
     }
 
+    // Add deck to store
     dispatch(addDeck({
       [key]: entry
+    }))
+
+    // Reset state
+    this.setState(() => ({
+      title: ''
     }))
   }
 
