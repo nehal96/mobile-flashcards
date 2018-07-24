@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import CreateDeck from './components/CreateDeck'
+import DeckList from './components/DeckList'
 import { Constants } from 'expo'
 
 function FlashcardsStatusBar({ backgroundColor, ...props }) {
@@ -16,7 +19,7 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <FlashcardsStatusBar backgroundColor={ 'white' } />
-        <CreateDeck />
+        <DeckList />
       </View>
     );
   }
