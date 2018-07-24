@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { getDecks } from '../utils/api'
+import { receiveDecks } from '../actions'
 
 class DeckList extends Component {
   componentDidMount() {
     const { dispatch } = this.props
 
-    console.log(this.props)
+    // Add dummy data to store
+    getDecks()
+      .then((decks) => dispatch(receiveDecks(decks)))
   }
 
   render() {
@@ -40,4 +43,4 @@ function mapStateToProps(decks) {
   }
 }
 
-export default DeckList
+export default connect(mapStateToProps)(DeckList)

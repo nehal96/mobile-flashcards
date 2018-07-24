@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { Constants } from 'expo'
 import CreateDeck from './components/CreateDeck'
 import DeckList from './components/DeckList'
-import { Constants } from 'expo'
+import reducer from './reducers'
+
 
 function FlashcardsStatusBar({ backgroundColor, ...props }) {
   return (
@@ -17,10 +19,12 @@ function FlashcardsStatusBar({ backgroundColor, ...props }) {
 class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <FlashcardsStatusBar backgroundColor={ 'white' } />
-        <DeckList />
-      </View>
+      <Provider store={ createStore(reducer) }>
+        <View style={styles.container}>
+          <FlashcardsStatusBar backgroundColor={ 'white' } />
+          <DeckList />
+        </View>
+      </Provider>
     );
   }
 }
