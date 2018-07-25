@@ -5,14 +5,14 @@ import { white, grey, lightBlue, lightGrey, lightGreen, pastelYellow } from '../
 import TextButton from './TextButton'
 
 class DeckView extends Component {
-  startQuiz = () => {
+  toStartQuiz = () => {
     // do stuff
   }
 
-  addCard = () => {
+  toAddCard = () => {
     // do stuff
   }
-  
+
   render() {
     const { title, numCards } = this.props
 
@@ -29,12 +29,12 @@ class DeckView extends Component {
         <View>
           <TextButton
             style={ [styles.button, { backgroundColor: lightGreen }] }
-            onPress={ this.startQuiz }>
+            onPress={ this.toStartQuiz }>
               Start Quiz
           </TextButton>
           <TextButton
             style={ [styles.button, { backgroundColor: lightBlue }] }
-            onPress={ this.addCard }>
+            onPress={ this.toAddCard }>
               Add Card
           </TextButton>
         </View>
