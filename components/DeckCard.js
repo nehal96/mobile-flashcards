@@ -4,16 +4,21 @@ import { connect } from 'react-redux'
 import { grey, pastelYellow } from '../utils/colors'
 
 class DeckCard extends Component {
-  handleRoute = (title) => {
-    console.log(title)
+  handleRoute = () => {
+    const { numCards, title, navigation } = this.props
+
+    navigation.navigate('DeckView', {
+      title,
+      numCards
+    })
   }
 
   render() {
-    const { title, numCards, onPress } = this.props
+    const { title, numCards } = this.props
 
     return (
       <View style={ styles.card }>
-        <TouchableOpacity onPress={ onPress }>
+        <TouchableOpacity onPress={ this.handleRoute }>
           <Text style={ styles.cardHeader }>
             { title }
           </Text>
@@ -58,10 +63,11 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(decks, { title, numCards }) {
+function mapStateToProps(decks, { title, numCards, navigation }) {
   return {
     title,
-    numCards
+    numCards,
+    navigation
   }
 }
 

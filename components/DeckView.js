@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
+import { connect } from 'react-redux'
 import { grey } from '../utils/colors'
 
 class DeckView extends Component {
   render() {
+    const { title, numCards } = this.props
+
     return (
       <View style={ styles.container }>
         <Text style={ styles.header }>
-          Deck
+          { title }
         </Text>
         <Text style={ styles.subHeader }>
-          10 cards
+          { numCards } cards
         </Text>
       </View>
     )
@@ -39,4 +42,13 @@ const styles = StyleSheet.create({
   }
 })
 
-export default DeckView
+function mapStateToProps(decks, { navigation }) {
+  const { title, numCards } = navigation.state.params
+
+  return {
+    title,
+    numCards
+  }
+}
+
+export default connect(mapStateToProps)(DeckView)

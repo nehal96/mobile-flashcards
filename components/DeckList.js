@@ -15,12 +15,6 @@ class DeckList extends Component {
       .then((decks) => dispatch(receiveDecks(decks)))
   }
 
-  toDeck = (title) => {
-    const { navigate } = this.props.navigation
-
-    navigate('DeckView')
-  }
-
   render() {
     const { decks } = this.props
 
@@ -33,7 +27,7 @@ class DeckList extends Component {
               key={ deckName }
               title={ decks[deckName].title }
               numCards={ decks[deckName].questions.length }
-              onPress={ this.toDeck }
+              navigation={ this.props.navigation }
             />
           ))}
         </ScrollView>
