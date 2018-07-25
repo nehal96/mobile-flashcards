@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
-import { grey } from '../utils/colors'
+import { white, grey, lightBlue, blue, lightGrey } from '../utils/colors'
 
 class DeckView extends Component {
+
   render() {
     const { title, numCards } = this.props
 
@@ -22,7 +23,8 @@ class DeckView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: Platform.OS === 'ios' ? white : lightGrey
   },
   header: {
     fontFamily: Platform.OS === 'ios' ? 'Avenir Next' : 'sans-serif',

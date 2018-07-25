@@ -62,9 +62,15 @@ const MainNavigator = createStackNavigator({
   DeckView: {
     screen: DeckView,
     navigationOptions: {
-      headerTintColor: white,
+      // Temporary solution to bug that puts title on top of back button on Android
+      headerTitle: Platform.OS === 'ios' ? 'Decks' : null,
+      headerTintColor: blue,
       headerStyle: {
-        backgroundColor: lightBlue
+        backgroundColor: white
+      },
+      headerTitleStyle: {
+        fontSize: 20,
+        marginLeft: Platform.OS === 'ios' ? 0 : 20
       }
     }
   }
