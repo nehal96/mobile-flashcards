@@ -70,7 +70,21 @@ const MainNavigator = createStackNavigator({
         backgroundColor: white
       },
       headerTitleStyle: {
-        fontSize: 20,
+        fontSize: 22,
+        marginLeft: Platform.OS === 'ios' ? 0 : 20
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      title: 'Add Card',
+      headerTintColor: blue,
+      headerStyle: {
+        backgroundColor: white
+      },
+      headerTitleStyle: {
+        fontSize: 22,
         marginLeft: Platform.OS === 'ios' ? 0 : 20
       }
     }
@@ -87,7 +101,7 @@ class App extends Component {
       <Provider store={ createStore(reducer) }>
         <View style={ styles.container }>
           <FlashcardsStatusBar backgroundColor={ white } />
-          <AddCard />
+          <MainNavigator />
         </View>
       </Provider>
     );

@@ -10,7 +10,9 @@ class DeckView extends Component {
   }
 
   toAddCard = () => {
-    // do stuff
+    const { navigation } = this.props
+
+    navigation.navigate('AddCard')
   }
 
   render() {

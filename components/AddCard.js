@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native'
 import TextButton from './TextButton'
-import { lightBlue } from '../utils/colors'
+import { white, lightBlue } from '../utils/colors'
 
 class AddCard extends Component {
   state = {
@@ -10,11 +10,11 @@ class AddCard extends Component {
   }
 
   handleQuestion = (question) => {
-    // do stuff
+    this.setState(() => ({ question }))
   }
 
   handleAnswer = (answer) => {
-    // do stuff
+    this.setState(() => ({ answer }))
   }
 
   addCard = () => {
@@ -23,6 +23,8 @@ class AddCard extends Component {
 
   render() {
     const { question, answer } = this.state
+    console.log(question)
+    console.log(answer)
 
     return(
       <View style={ styles.container }>
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flex: 1,
+    backgroundColor: Platform.OS === 'ios' ? white : lightGrey,
     justifyContent: 'space-around',
-    margin: 20
   },
   input: {
     fontSize: 22,
@@ -68,7 +70,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginTop: 15,
-    marginBottom: 15
+    marginBottom: 15,
+    marginLeft: 20,
+    marginRight: 20
   },
   button: {
     borderRadius: Platform.OS === 'ios' ? 8 : 2,
