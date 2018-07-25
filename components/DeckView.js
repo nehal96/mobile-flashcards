@@ -1,21 +1,43 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
-import { white, grey, lightBlue, blue, lightGrey } from '../utils/colors'
+import { white, grey, lightBlue, lightGrey, lightGreen, pastelYellow } from '../utils/colors'
+import TextButton from './TextButton'
 
 class DeckView extends Component {
+  startQuiz = () => {
+    // do stuff
+  }
 
+  addCard = () => {
+    // do stuff
+  }
+  
   render() {
     const { title, numCards } = this.props
 
     return (
       <View style={ styles.container }>
-        <Text style={ styles.header }>
-          { title }
-        </Text>
-        <Text style={ styles.subHeader }>
-          { numCards } cards
-        </Text>
+        <View style= {styles.deckCard }>
+          <Text style={ styles.header }>
+            { title }
+          </Text>
+          <Text style={ styles.subHeader }>
+            { numCards } cards
+          </Text>
+        </View>
+        <View>
+          <TextButton
+            style={ [styles.button, { backgroundColor: lightGreen }] }
+            onPress={ this.startQuiz }>
+              Start Quiz
+          </TextButton>
+          <TextButton
+            style={ [styles.button, { backgroundColor: lightBlue }] }
+            onPress={ this.addCard }>
+              Add Card
+          </TextButton>
+        </View>
       </View>
     )
   }
@@ -24,7 +46,25 @@ class DeckView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? white : lightGrey
+    backgroundColor: Platform.OS === 'ios' ? white : lightGrey,
+    justifyContent: 'space-around'
+  },
+  deckCard: {
+    backgroundColor: pastelYellow,
+    borderRadius: Platform.OS === 'ios' ? 16 : 2,
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    justifyContent: 'center',
+    shadowRadius: 8,
+    shadowOpacity: 0.7,
+    shadowColor: 'rgba(0, 0, 0, 0.24)',
+    shadowOffset: {
+      width: 0,
+      height: 0
+    }
   },
   header: {
     fontFamily: Platform.OS === 'ios' ? 'Avenir Next' : 'sans-serif',
@@ -41,6 +81,12 @@ const styles = StyleSheet.create({
     color: grey,
     marginBottom: 10,
     textAlign: 'center'
+  },
+  button: {
+    borderRadius: Platform.OS === 'ios' ? 8 : 2,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 15
   }
 })
 
