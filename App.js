@@ -21,41 +21,9 @@ function FlashcardsStatusBar({ backgroundColor, ...props }) {
   )
 }
 
-const Tabs = createBottomTabNavigator({
+const StackNavigator = createStackNavigator({
   Home: {
     screen: DeckList,
-    navigationOptions: {
-      tabBarLabel: 'Home',
-      tabBarIcon: ({ tintColor }) => <Feather name='home' size={ 30 } color={ tintColor } />
-    }
-  },
-  CreateDeck: {
-    screen: CreateDeck,
-    navigationOptions: {
-      tabBarLabel: 'Create Deck',
-      tabBarIcon: ({ tintColor }) => <Entypo name='add-to-list' size={ 30 } color={ tintColor } />
-    }
-  }
-}, {
-  navigationOptions: {
-    header: null
-  },
-  tabBarOptions: {
-    inactiveTintColor: grey,
-    activeTintColor: blue,
-    style: {
-      height: 50,
-      paddingTop: 6,
-      backgroundColor: white,
-      borderWidth: 1,
-      borderColor: lightGrey
-    }
-  }
-})
-
-const MainNavigator = createStackNavigator({
-  Home: {
-    screen: Tabs,
     navigationOptions: {
       header: null
     }
@@ -92,6 +60,38 @@ const MainNavigator = createStackNavigator({
 }, {
   cardStyle: {
     shadowColor: 'transparent'
+  }
+})
+
+const MainNavigator = createBottomTabNavigator({
+  Home: {
+    screen: StackNavigator,
+    navigationOptions: {
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor }) => <Feather name='home' size={ 30 } color={ tintColor } />
+    }
+  },
+  CreateDeck: {
+    screen: CreateDeck,
+    navigationOptions: {
+      tabBarLabel: 'Create Deck',
+      tabBarIcon: ({ tintColor }) => <Entypo name='add-to-list' size={ 30 } color={ tintColor } />
+    }
+  }
+}, {
+  navigationOptions: {
+    header: null
+  },
+  tabBarOptions: {
+    inactiveTintColor: grey,
+    activeTintColor: blue,
+    style: {
+      height: 50,
+      paddingTop: 6,
+      backgroundColor: white,
+      borderWidth: 1,
+      borderColor: lightGrey
+    }
   }
 })
 

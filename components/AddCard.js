@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native'
 import TextButton from './TextButton'
-import { white, lightBlue } from '../utils/colors'
+import { white, lightBlue, lightGrey } from '../utils/colors'
 
 class AddCard extends Component {
   state = {
