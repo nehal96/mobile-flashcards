@@ -7,6 +7,7 @@ import {
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { addDeck } from '../actions'
+import { submitDeck } from '../utils/api'
 import { lightBlue, white, lightGrey } from '../utils/colors'
 
 function SubmitButton({ onPress }) {
@@ -47,7 +48,11 @@ class CreateDeck extends Component {
       title: ''
     }))
 
+    // Route to DeckView
     this.toDeck(title)
+
+    // Add deck to AsyncStorage
+    submitDeck({ key, entry })
   }
 
   toDeck = (title) => {
