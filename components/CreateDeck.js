@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { addDeck } from '../actions'
 import { submitDeck } from '../utils/api'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { lightBlue, white, lightGrey } from '../utils/colors'
 
 function SubmitButton({ onPress }) {

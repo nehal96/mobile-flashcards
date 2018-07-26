@@ -12,6 +12,7 @@ import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import reducer from './reducers'
 import { white, lightGrey, grey, blue, lightBlue } from './utils/colors'
+import { setLocalNotification } from './utils/helpers'
 
 
 function FlashcardsStatusBar({ backgroundColor, ...props }) {
@@ -111,6 +112,10 @@ const MainNavigator = createBottomTabNavigator({
 })
 
 class App extends Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+  
   render() {
     return (
       <Provider store={ createStore(reducer) }>
