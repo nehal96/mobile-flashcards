@@ -17,6 +17,7 @@ class DeckList extends Component {
 
   render() {
     const { decks } = this.props
+    // console.log(decks)
 
     return (
       <View style={ styles.container }>
@@ -26,7 +27,6 @@ class DeckList extends Component {
             <DeckCard
               key={ deckName }
               title={ decks[deckName].title }
-              numCards={ decks[deckName].questions.length }
               navigation={ this.props.navigation }
             />
           ))}

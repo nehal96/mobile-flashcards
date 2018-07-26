@@ -63,7 +63,9 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(decks, { title, numCards, navigation }) {
+function mapStateToProps(decks, { title, navigation }) {
+  const numCards = decks[title].questions.length
+  
   return {
     title,
     numCards,

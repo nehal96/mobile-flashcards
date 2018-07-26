@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { addCardToDeck } from '../actions'
 import TextButton from './TextButton'
 import { white, lightBlue, lightGrey } from '../utils/colors'
@@ -27,8 +28,21 @@ class AddCard extends Component {
       answer
     }
 
+    // Add card to deck in store
     dispatch(addCardToDeck(title, card))
 
+    // Reset state
+    this.setState(() => ({
+      question: '',
+      answer: ''
+    }))
+
+    // Go back to DeckView screen
+    this.goBack()
+  }
+
+  goBack = () => {
+    this.props.navigation.dispatch(NavigationActions.back())
   }
 
   render() {

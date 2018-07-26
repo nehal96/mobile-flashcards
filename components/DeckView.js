@@ -11,7 +11,7 @@ class DeckView extends Component {
 
   toAddCard = () => {
     const { title, navigation } = this.props
-    
+
     navigation.navigate('AddCard', { title })
   }
 
@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(decks, { navigation }) {
-  const { title, numCards } = navigation.state.params
+  const { title } = navigation.state.params
+  const numCards = decks[title].questions.length
 
   return {
     title,
