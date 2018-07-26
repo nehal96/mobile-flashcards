@@ -47,13 +47,13 @@ class CreateDeck extends Component {
       title: ''
     }))
 
-    this.toHome()
+    this.toDeck(title)
   }
 
-  toHome = () => {
-    this.props.navigation.dispatch(NavigationActions.navigate({
-      routeName: 'Home'
-    }))
+  toDeck = (title) => {
+    const { navigation } = this.props
+
+    navigation.navigate('DeckView', { title })
   }
 
   render() {
