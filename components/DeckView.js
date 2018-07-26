@@ -37,7 +37,10 @@ class DeckView extends Component {
             { title }
           </Text>
           <Text style={ styles.subHeader }>
-            { numCards } cards
+            { numCards === 1
+              ? numCards + ' card'
+              : numCards + ' cards'
+            }
           </Text>
         </View>
         <View>

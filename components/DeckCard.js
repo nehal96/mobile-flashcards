@@ -23,7 +23,10 @@ class DeckCard extends Component {
             { title }
           </Text>
           <Text style={ styles.cardSubHeader }>
-            { numCards } cards
+            { numCards === 1
+              ? numCards + ' card'
+              : numCards + ' cards'
+            }
           </Text>
         </TouchableOpacity>
       </View>
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(decks, { title, navigation }) {
   const numCards = decks[title].questions.length
-  
+
   return {
     title,
     numCards,
