@@ -82,7 +82,8 @@ class Quiz extends Component {
         </View>
         <View style={ styles.quizContainer }>
           <View style={{ justifyContent: 'center' }}>
-            <Text style={ styles.question }>
+            <Text style={
+                [styles.question, { fontSize: (questions[index].question.length > 50 || questions[index].answer.length > 50) ? 26 : 36 }] }>
               { viewAnswer
                 ? questions[index].answer
                 : questions[index].question
