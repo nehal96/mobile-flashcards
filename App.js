@@ -41,7 +41,7 @@ const StackNavigator = createStackNavigator({
       },
       headerTitleStyle: {
         fontSize: 22,
-        marginLeft: Platform.OS === 'ios' ? 0 : 20
+        paddingLeft: Platform.OS === 'ios' ? 0 : 40
       }
     }
   },
@@ -55,7 +55,8 @@ const StackNavigator = createStackNavigator({
       },
       headerTitleStyle: {
         fontSize: 22,
-        marginLeft: Platform.OS === 'ios' ? 0 : 20
+        // Hack for bug that overlaps title and back button
+        paddingLeft: Platform.OS === 'ios' ? 0 : 40
       }
     }
   },
@@ -69,7 +70,8 @@ const StackNavigator = createStackNavigator({
       },
       headerTitleStyle: {
         fontSize: 22,
-        marginLeft: Platform.OS === 'ios' ? 0 : 20
+        // Hack for bug that overlaps title and back button
+        paddingLeft: Platform.OS === 'ios' ? 0 : 40
       }
     }
   }
