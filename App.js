@@ -33,7 +33,7 @@ const StackNavigator = createStackNavigator({
     screen: DeckView,
     navigationOptions: {
       // Temporary solution to bug that puts title on top of back button on Android
-      headerTitle: Platform.OS === 'ios' ? 'Decks' : null,
+      headerTitle: Platform.OS === 'ios' ? 'Deck' : null,
       headerTintColor: blue,
       headerStyle: {
         backgroundColor: white
@@ -48,6 +48,20 @@ const StackNavigator = createStackNavigator({
     screen: AddCard,
     navigationOptions: {
       title: 'Add Card',
+      headerTintColor: blue,
+      headerStyle: {
+        backgroundColor: white
+      },
+      headerTitleStyle: {
+        fontSize: 22,
+        marginLeft: Platform.OS === 'ios' ? 0 : 20
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz',
       headerTintColor: blue,
       headerStyle: {
         backgroundColor: white

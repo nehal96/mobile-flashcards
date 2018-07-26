@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import TextButton from './TextButton'
-import { lightGreen, red, lightBlue } from '../utils/colors'
+import { white, lightGrey, lightGreen, red, lightBlue } from '../utils/colors'
 
 class Quiz extends Component {
   render() {
@@ -38,7 +38,8 @@ class Quiz extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: Platform.OS === 'ios' ? white : lightGrey
   },
   progressContainer: {
     flex: 1,
