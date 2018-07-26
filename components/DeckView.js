@@ -1,14 +1,24 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform } from 'react-native'
+import { View, Text, StyleSheet, Platform, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { white, grey, lightBlue, lightGrey, lightGreen, pastelYellow } from '../utils/colors'
 import TextButton from './TextButton'
 
 class DeckView extends Component {
   toStartQuiz = () => {
-    const { navigation, title } = this.props
+    const { navigation, title, numCards } = this.props
 
-    navigation.navigate('Quiz', { title })
+    if (numCards === 0) {
+      Alert.alert(
+        "Empty Deck",
+        "Add cards to this deck to be able to take a quiz",
+        [
+          { text: 'OK' }
+        ]
+      )
+    } else {
+      navigation.navigate('Quiz', { title })
+    }
   }
 
   toAddCard = () => {
