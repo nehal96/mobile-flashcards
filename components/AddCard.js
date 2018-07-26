@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native'
+import {
+  View, Text, TextInput, KeyboardAvoidingView,
+  StyleSheet, Platform, Alert
+} from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { addCardToDeck } from '../actions'
@@ -23,22 +26,50 @@ class AddCard extends Component {
   addCard = () => {
     const { dispatch, title } = this.props
     const { question, answer } = this.state
-    const card = {
-      question,
-      answer
+
+    // Input validation for question and answer
+    if (question.length === 0 && answer.length === 0) {
+      Alert.alert(
+        "Empty Question and Answer Field",
+        "You haven't entered a question or answer",
+        [
+          { text: 'OK' }
+        ]
+      )
+    } else if (question.length === 0) {
+      Alert.alert(
+        "Empty Question Field",
+        "You haven't entered a question",
+        [
+          { text: 'OK' }
+        ]
+      )
+    } else if (answer.length === 0) {
+      Alert.alert(
+        "Empty Answer Field",
+        "You haven't entered an answer",
+        [
+          { text: 'OK' }
+        ]
+      )
+    } else {
+      const card = {
+        question,
+        answer
+      }
+
+      // Add card to deck in store
+      dispatch(addCardToDeck(title, card))
+
+      // Reset state
+      this.setState(() => ({
+        question: '',
+        answer: ''
+      }))
+
+      // Go back to DeckView screen
+      this.goBack()
     }
-
-    // Add card to deck in store
-    dispatch(addCardToDeck(title, card))
-
-    // Reset state
-    this.setState(() => ({
-      question: '',
-      answer: ''
-    }))
-
-    // Go back to DeckView screen
-    this.goBack()
   }
 
   goBack = () => {
