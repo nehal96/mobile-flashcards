@@ -8,13 +8,36 @@ class Quiz extends Component {
   state = {
     index: 0,
     counter: 1,
-    viewAnswer: false
+    viewAnswer: false,
+    numCorrect: 0,
+    numIncorrect: 0
   }
 
   handleToggleQuestionAnswer = () => {
-    this.setState(() => ({
-      viewAnswer: !this.state.viewAnswer
+    this.setState((prevState) => ({
+      viewAnswer: !prevState.viewAnswer
     }))
+  }
+
+  handleCorrectAnswer = () => {
+    this.setState((prevState) => ({
+      index: prevState.index + 1,
+      counter: prevState.counter + 1,
+      numCorrect: prevState.numCorrect + 1,
+      // If correct was pressed after viewing the answer, when the next question
+      // is showed it will show the question instead of the answer.
+      viewAnswer: false
+    }))
+  }
+
+  handleIncorrectAnswer = () => {
+    this.setState((prevState) => ({
+      index: prevState.index + 1,
+      counter: prevState.counter + 1,
+      numIncorrect: prevState.numIncorrect + 1,
+      viewAnswer: false
+    }))
+
   }
 
   render() {
@@ -48,12 +71,14 @@ class Quiz extends Component {
           </View>
           <View style={ styles.buttonContainer }>
             <TextButton
-              style={ [styles.optionBtn, { backgroundColor: lightGreen }] }>
-              Correct
+              style={ [styles.optionBtn, { backgroundColor: lightGreen }] }
+              onPress={ this.handleCorrectAnswer }>
+                Correct
             </TextButton>
             <TextButton
-              style={ [styles.optionBtn, { backgroundColor: red }] }>
-              Incorrect
+              style={ [styles.optionBtn, { backgroundColor: red }] }
+              onPress={ this.handleIncorrectAnswer }>
+                Incorrect
             </TextButton>
           </View>
         </View>
