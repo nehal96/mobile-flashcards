@@ -1,5 +1,10 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "orientation": "portrait",
+    "name": "Mobile Flashcards",
+    "description": "Flashcards app to help you study!",
+    "slug": "mobileflashcards",
+    "version": "1.0"
   }
 }
