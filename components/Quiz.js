@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import TextButton from './TextButton'
-import { white, lightGrey, lightGreen, red, lightBlue } from '../utils/colors'
+import QuizResults from './QuizResults'
+import { white, grey, lightGrey, lightGreen, red, lightBlue } from '../utils/colors'
 
 class Quiz extends Component {
   state = {
@@ -42,10 +43,19 @@ class Quiz extends Component {
 
   render() {
     const { deck } = this.props
-    const { index, counter, viewAnswer } = this.state
+    const { index, counter, viewAnswer, numCorrect, numIncorrect } = this.state
 
     const questions = deck.questions
     const numQuestions = questions.length
+
+    if (counter > numQuestions) {
+      return (
+        <QuizResults
+          numCorrect={ numCorrect }
+          numIncorrect={ numIncorrect }
+        />
+      )
+    }
 
     return(
       <View style={ styles.container}>
