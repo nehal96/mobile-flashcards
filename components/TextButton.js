@@ -13,7 +13,7 @@ export default function TextButton({ children, onPress, style = {} }) {
 const styles = StyleSheet.create({
   btn: {
     padding: 10,
-    height: 45
+    height: 50
   },
   btnText: {
     textAlign: 'center',

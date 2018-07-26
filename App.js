@@ -9,6 +9,7 @@ import CreateDeck from './components/CreateDeck'
 import DeckList from './components/DeckList'
 import DeckView from './components/DeckView'
 import AddCard from './components/AddCard'
+import Quiz from './components/Quiz'
 import reducer from './reducers'
 import { white, lightGrey, grey, blue, lightBlue } from './utils/colors'
 
