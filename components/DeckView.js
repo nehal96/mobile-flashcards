@@ -6,9 +6,9 @@ import TextButton from './TextButton'
 
 class DeckView extends Component {
   toStartQuiz = () => {
-    const { navigation } = this.props
+    const { navigation, title } = this.props
 
-    navigation.navigate('Quiz')
+    navigation.navigate('Quiz', { title })
   }
 
   toAddCard = () => {

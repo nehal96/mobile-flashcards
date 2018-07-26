@@ -1,23 +1,49 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
+import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import { white, lightGrey, lightGreen, red, lightBlue } from '../utils/colors'
 
 class Quiz extends Component {
+  state = {
+    index: 0,
+    counter: 1,
+    viewAnswer: false
+  }
+
+  handleToggleQuestionAnswer = () => {
+    this.setState(() => ({
+      viewAnswer: !this.state.viewAnswer
+    }))
+  }
+
   render() {
+    const { deck } = this.props
+    const { index, counter, viewAnswer } = this.state
+
+    const questions = deck.questions
+    const numQuestions = questions.length
+
     return(
       <View style={ styles.container}>
         <View style={ styles.progressContainer }>
-          <Text style={ styles.progress }>1/5</Text>
+          <Text style={ styles.progress }>{ counter }/{ numQuestions }</Text>
         </View>
         <View style={ styles.quizContainer }>
           <View style={{ justifyContent: 'center' }}>
             <Text style={ styles.question }>
-              Does React Native work with Android?
+              { viewAnswer
+                ? questions[index].answer
+                : questions[index].question
+              }
             </Text>
             <TextButton
-              style={ [styles.answerBtn, { backgroundColor: lightBlue, justifyContent: 'center' }] }>
-                View Answer
+              style={ [styles.answerBtn, { backgroundColor: lightBlue, justifyContent: 'center' }] }
+              onPress={ this.handleToggleQuestionAnswer }>
+                { viewAnswer
+                  ? 'View Question'
+                  : 'View Answer'
+                }
             </TextButton>
           </View>
           <View style={ styles.buttonContainer }>
@@ -55,7 +81,7 @@ const styles = StyleSheet.create({
     fontWeight: '600'
   },
   quizContainer: {
-    flex: 5,
+    flex: 7,
     justifyContent: 'space-around',
     margin: 20,
     // backgroundColor: 'lightgreen'
@@ -89,4 +115,13 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Quiz
+function mapStateToProps(decks, { navigation }) {
+  const { title } = navigation.state.params
+  const deck = decks[title]
+
+  return {
+    deck
+  }
+}
+
+export default connect(mapStateToProps)(Quiz)
