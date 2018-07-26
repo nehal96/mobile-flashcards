@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {
   View, Text, TextInput, KeyboardAvoidingView,
-  StyleSheet, Platform, Alert
+  StyleSheet, Platform, Alert, Keyboard,
+  TouchableWithoutFeedback
 } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
@@ -80,29 +81,39 @@ class AddCard extends Component {
     const { question, answer } = this.state
 
     return(
-      <View style={ styles.container }>
-        <KeyboardAvoidingView style={ styles.inputContainer } behavior='padding' enabled>
-          <View>
-            <TextInput
-              style={ styles.input }
-              placeholder={ 'Question' }
-              value={ question }
-              onChangeText={ this.handleQuestion }
-            />
-            <TextInput
-              style={ styles.input }
-              placeholder={ 'Answer' }
-              value={ answer }
-              onChangeText={ this.handleAnswer }
-            />
-          </View>
-          <TextButton
-            style={ [styles.button, { backgroundColor: lightBlue }] }
-            onPress={ this.addCard }>
-            Add Card
-          </TextButton>
-        </KeyboardAvoidingView>
-      </View>
+      <TouchableWithoutFeedback onPress={ Keyboard.dismiss } accessible={ false }>
+        <View style={ styles.container }>
+          <KeyboardAvoidingView style={ styles.inputContainer } behavior='padding' enabled>
+            <View>
+              <TextInput
+                style={ styles.input }
+                placeholder={ 'Question' }
+                value={ question }
+                onChangeText={ this.handleQuestion }
+                multiline={ true }
+                numberOfLines={ 3 }
+                maxLength={ 100 }
+                onSubmitEditing={ Keyboard.dismiss }
+              />
+              <TextInput
+                style={ styles.input }
+                placeholder={ 'Answer' }
+                value={ answer }
+                onChangeText={ this.handleAnswer }
+                multiline={ true }
+                numberOfLines={ 3 }
+                maxLength={ 100 }
+                onSubmitEditing={ Keyboard.dismiss }
+              />
+            </View>
+            <TextButton
+              style={ [styles.button, { backgroundColor: lightBlue }] }
+              onPress={ this.addCard }>
+              Add Card
+            </TextButton>
+          </KeyboardAvoidingView>
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 }
