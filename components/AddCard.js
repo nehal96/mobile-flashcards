@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native'
+import { connect } from 'react-redux'
+import { addCardToDeck } from '../actions'
 import TextButton from './TextButton'
 import { white, lightBlue, lightGrey } from '../utils/colors'
 
@@ -18,13 +20,19 @@ class AddCard extends Component {
   }
 
   addCard = () => {
-    // do stuff
+    const { dispatch, title } = this.props
+    const { question, answer } = this.state
+    const card = {
+      question,
+      answer
+    }
+
+    dispatch(addCardToDeck(title, card))
+
   }
 
   render() {
     const { question, answer } = this.state
-    console.log(question)
-    console.log(answer)
 
     return(
       <View style={ styles.container }>
@@ -82,4 +90,12 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddCard
+function mapStateToProps(decks, { navigation }) {
+  const { title } = navigation.state.params
+
+  return {
+    title
+  }
+}
+
+export default connect(mapStateToProps)(AddCard)
