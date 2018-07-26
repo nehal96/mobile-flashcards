@@ -1,18 +1,19 @@
 import React from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
-import { white, grey, lightGrey } from '../utils/colors'
+import TextButton from './TextButton'
+import { white, grey, lightGrey, lightGreen, lightBlue } from '../utils/colors'
 
-export default function QuizResults({ numCorrect, numIncorrect }) {
+export default function QuizResults({ numCorrect, numIncorrect, restartQuiz, backToDeck }) {
   const numQuestions = numCorrect + numIncorrect
   const percent = (numCorrect / numQuestions) * 100
 
   return(
     <View style={ [styles.container, { justifyContent: 'space-around'}] }>
       <Text style={ styles.header }>Quiz Results</Text>
-      <Text style={{ fontSize: 26, textAlign: 'center' }}>
-        You got: { percent.toFixed(1) }%
-      </Text>
-      <View>
+      <View style={{ justifyContent: 'space-around' }}>
+        <Text style={{ fontSize: 28, textAlign: 'center', marginBottom: 20 }}>
+          You got: { percent.toFixed(1) }%
+        </Text>
         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
           <Text style={ styles.resultsDetails }>
               Number correct:
@@ -29,6 +30,18 @@ export default function QuizResults({ numCorrect, numIncorrect }) {
             { numIncorrect } out of { numQuestions }
           </Text>
         </View>
+      </View>
+      <View >
+          <TextButton
+            style={ [styles.button, { backgroundColor: lightGreen }]}
+            onPress={ restartQuiz }>
+              Restart Quiz
+          </TextButton>
+          <TextButton
+            style={ [styles.button, { backgroundColor: lightBlue }]}
+            onPress={ backToDeck }>
+              Back to Deck
+          </TextButton>
       </View>
     </View>
   )
@@ -51,5 +64,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     color: grey
+  },
+  button: {
+    borderRadius: Platform.OS === 'ios' ? 8 : 2,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 15
   }
 })

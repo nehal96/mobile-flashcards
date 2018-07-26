@@ -38,7 +38,23 @@ class Quiz extends Component {
       numIncorrect: prevState.numIncorrect + 1,
       viewAnswer: false
     }))
+  }
 
+  handleRestartQuiz = () => {
+    this.setState(() => ({
+      index: 0,
+      counter: 1,
+      viewAnswer: false,
+      numCorrect: 0,
+      numIncorrect: 0
+    }))
+  }
+
+  handleBackToDeck = () => {
+    const { deck, navigation } = this.props
+    const title = deck.title
+
+    navigation.navigate('DeckView', { title })
   }
 
   render() {
@@ -53,6 +69,8 @@ class Quiz extends Component {
         <QuizResults
           numCorrect={ numCorrect }
           numIncorrect={ numIncorrect }
+          restartQuiz={ this.handleRestartQuiz }
+          backToDeck={ this.handleBackToDeck }
         />
       )
     }
