@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
   View, Text, StyleSheet, Platform,
   TextInput, KeyboardAvoidingView,
-  TouchableOpacity
+  TouchableOpacity, Alert
 } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
@@ -34,26 +34,37 @@ class CreateDeck extends Component {
     const { dispatch } = this.props
     const { title } = this.state
     const key = this.state.title
-    const entry = {
-      title,
-      questions: []
+
+    if (title.length === 0) {
+      Alert.alert(
+        "Empty Title Field",
+        "You haven't entered a title for your deck",
+        [
+          { text: 'OK' }
+        ]
+      )
+    } else {
+      const entry = {
+        title,
+        questions: []
+      }
+
+      // Add deck to store
+      dispatch(addDeck({
+        [key]: entry
+      }))
+
+      // Reset state
+      this.setState(() => ({
+        title: ''
+      }))
+
+      // Route to DeckView
+      this.toDeck(title)
+
+      // Add deck to AsyncStorage
+      submitDeck({ key, entry })
     }
-
-    // Add deck to store
-    dispatch(addDeck({
-      [key]: entry
-    }))
-
-    // Reset state
-    this.setState(() => ({
-      title: ''
-    }))
-
-    // Route to DeckView
-    this.toDeck(title)
-
-    // Add deck to AsyncStorage
-    submitDeck({ key, entry })
   }
 
   toDeck = (title) => {
